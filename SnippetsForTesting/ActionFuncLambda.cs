@@ -41,7 +41,7 @@ namespace SnippetsForTesting
         public void StringReverseWithAction(string input)
         {
             Action<string> strWithAction = inputY => Console.WriteLine( new string(inputY.Reverse().ToArray())); // expression style
-            Action<string> strWithAction1 = (string inputZ) => { Console.Write(new string(inputZ.Reverse().ToArray())); }; // expression style
+            Action<string> strWithAction1 = (string inputZ) => { Console.Write(new string(inputZ.Reverse().ToArray())); }; // statement style
             strWithAction(input);
             strWithAction1(input);
         }

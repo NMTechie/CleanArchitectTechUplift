@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NewWayOfAPI.AuthHandler;
 
 namespace NewWayOfAPI
 {
@@ -27,19 +28,8 @@ namespace NewWayOfAPI
         public void ConfigureServices(IServiceCollection services)
         {            
             services.AddControllers();
-
-            /*
-             * This simple statement inject the JWT Authentication with a "Bearer" scheme
-             * that extarcts JWT token from the Authorization request Header
-             *********** services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
-             * 
-             ************ Below lines does same thing with "Test" scheme
-             * services.AddAuthentication("Test").AddJwtBearer("Test", options =>
-             {
-                 
-             });
-             */
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+            
+            services.HandleAuthenticationFromMultipleProviders();
 
             services.AddSwaggerGen(c =>
             {
