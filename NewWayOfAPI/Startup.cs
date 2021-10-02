@@ -11,9 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NewWayOfAPI.AuthHandler;
+using PresentationLayer.NewWayOfAPI.AuthHandler;
 
-namespace NewWayOfAPI
+namespace PresentationLayer.NewWayOfAPI
 {
     public class Startup
     {

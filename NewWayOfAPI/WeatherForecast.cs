@@ -1,6 +1,6 @@
 using System;
 
-namespace NewWayOfAPI
+namespace PresentationLayer.NewWayOfAPI
 {
     public class WeatherForecast
     {
