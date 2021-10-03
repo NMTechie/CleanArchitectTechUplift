@@ -10,7 +10,7 @@ namespace PresentationLayer.NewWayOfAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    /*The Authorize attribute until been used it is not going to protect the resource*/
+    /*The Authorize attribute until been used it is not going to protect the resource even used the app.UseAuthorization() in startup */
     [Authorize]
     public class WeatherForecastController : ControllerBase
     {

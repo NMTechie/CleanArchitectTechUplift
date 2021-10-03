@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicationLayer.NewWayOfAPI\ApplicationLayer.NewWayOfAPI.csproj" />
+    <ProjectReference Include="..\DomainLayer.NewWayOfAPI\DomainLayer.NewWayOfAPI.csproj" />
+  </ItemGroup>
+
 </Project>
