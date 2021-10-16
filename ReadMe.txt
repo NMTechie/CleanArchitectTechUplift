@@ -15,3 +15,7 @@ Auditable Entity ==> Should be composition with value objects
 	- Delete
 	- view ??
 3. Unit test case naming convention - Cleared on 4th Oct
+
+
+************ How to mock IFormFile in ASP.NET Core https://stackoverflow.com/questions/36858542/how-to-mock-an-iformfile-for-a-unit-integration-test-in-asp-net-core
+************ How to decide what to Moq and what not to Moq https://stackoverflow.com/questions/56905578/moq-non-overridable-members-may-not-be-used-in-setup-verification-expression
