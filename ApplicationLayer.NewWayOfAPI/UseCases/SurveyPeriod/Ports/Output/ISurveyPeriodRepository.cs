@@ -11,6 +11,6 @@ namespace ApplicationLayer.NewWayOfAPI.UseCases.SurveyPeriod.Ports.Output
     {
         public bool IsSurveyPeriodEditable(long surveyPeriodID);
         public bool SaveSurveyPeriod(SurveyPeriodEntity surveyPeriod);
-        public IList<SurveyPeriodEntity> GetSurveyPeriodList(long? surveyPeriodID = null);
+        public IList<SurveyPeriodEntity> GetSurveyPeriodList(long? surveyPeriodID = null); 
     }
 }
