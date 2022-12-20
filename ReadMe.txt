@@ -1,3 +1,9 @@
+https://medium.com/codex/clean-architecture-for-dummies-df6561d42c94#:~:text=The%20hexagonal%20architecture%20(also%20known,%2Ddriven%20design%20(DDD).
+
+https://blog.allegro.tech/2020/05/hexagonal-architecture-by-example.html
+
+https://paulovich.net/hexagonal-and-clean-architecture-styles-with-net-core-reviewed/
+
 ###************************ OpenAPI Support in .NET 5
 Swagger Nuget is by deafult implemented
 
