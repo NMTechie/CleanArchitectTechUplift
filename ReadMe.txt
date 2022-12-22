@@ -1,3 +1,10 @@
+Entity vs Value Objects 
+------------------------------------------------------------------------------
+https://enterprisecraftsmanship.com/posts/entity-vs-value-object-the-ultimate-list-of-differences/
+https://stackoverflow.com/questions/492636/ddd-value-objects-vs-entity-objects
+
+Clean Architecture
+--------------------------------------------------------------------------------
 https://medium.com/codex/clean-architecture-for-dummies-df6561d42c94#:~:text=The%20hexagonal%20architecture%20(also%20known,%2Ddriven%20design%20(DDD).
 
 https://blog.allegro.tech/2020/05/hexagonal-architecture-by-example.html

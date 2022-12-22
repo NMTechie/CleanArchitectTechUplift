@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainLayer.NewWayOfAPI.Entities.SurveyPeriod;
-
-/*
+﻿/*
  * The input port is basically the logics on the Entity and Value Objects
  * This could be encaplusated in side the Class it self
  * However gramatically this could be used as well 
@@ -23,7 +16,7 @@ using DomainLayer.NewWayOfAPI.Entities.SurveyPeriod;
  */
 namespace DomainLayer.NewWayOfAPI.Entities.SurveyPeriod.Ports.Input
 {
-    public interface ISurveyPeriodDomainPortIP
+    public interface ISurveyPeriodDomainOperation
     {
         bool IsValidSurveyPeriod(SurveyPeriodEntity surveyPeriod);        
         bool IsSurveyPeriodUnique(SurveyPeriodEntity surveyPeriod);

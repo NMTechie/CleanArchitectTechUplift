@@ -6,19 +6,22 @@ using ApplicationLayer.NewWayOfAPI.UseCases.SurveyPeriod.Ports.Output;
 using ApplicationLayer.NewWayOfAPI.Exceptions;
 using DomainLayer.NewWayOfAPI.Entities.SurveyPeriod;
 using DomainLayer.NewWayOfAPI.Entities.SurveyPeriod.Ports.Input;
+using DomainLayer.NewWayOfAPI.Entities.SurveyPeriod.Ports.Output;
 
 namespace ApplicationLayer.NewWayOfAPI.UnitTest
 {    
     public class UnitTestForSurveyPeriodService
     {
         private SurveyPeriodEntity surveyPeriodEntity;
-        private Mock<ISurveyPeriodDomainPortIP> surveyPeriodDomainPortIP;
+        private Mock<ISurveyPeriodDomainOperation> surveyPeriodDomainPortIP;
         private Mock<ISurveyPeriodRepository> surveyPeriodRepository;
         private SurveyPeriodService surveyPeriodService;
+        private Mock<ISurveyPeriodDomainRepository> surveyPeriodDomainRepository;
         public UnitTestForSurveyPeriodService()
         {
-            surveyPeriodEntity = new SurveyPeriodEntity();
-            surveyPeriodDomainPortIP = new Mock<ISurveyPeriodDomainPortIP>();
+            surveyPeriodDomainRepository = new Mock<ISurveyPeriodDomainRepository>();
+            surveyPeriodEntity = new SurveyPeriodEntity(surveyPeriodDomainRepository.Object);
+            surveyPeriodDomainPortIP = new Mock<ISurveyPeriodDomainOperation>();
             surveyPeriodRepository = new Mock<ISurveyPeriodRepository>();
             surveyPeriodService = new SurveyPeriodService(surveyPeriodDomainPortIP.Object, surveyPeriodRepository.Object);
         }

@@ -13,9 +13,9 @@ namespace ApplicationLayer.NewWayOfAPI.UseCases.SurveyPeriod.Ports.Input
 {
     public class SurveyPeriodService : ISurveyPeriodService
     {
-        private ISurveyPeriodDomainPortIP _surveyPeriodPortIP;
+        private ISurveyPeriodDomainOperation _surveyPeriodPortIP;
         private ISurveyPeriodRepository _surveyPeriodRepository;
-        public SurveyPeriodService(ISurveyPeriodDomainPortIP surveyPeriodPortIP,ISurveyPeriodRepository surveyPeriodRepository)
+        public SurveyPeriodService(ISurveyPeriodDomainOperation surveyPeriodPortIP,ISurveyPeriodRepository surveyPeriodRepository)
         {
             _surveyPeriodPortIP = surveyPeriodPortIP;
             _surveyPeriodRepository = surveyPeriodRepository;
