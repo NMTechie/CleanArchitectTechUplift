@@ -30,18 +30,14 @@ namespace DomainLayer.NewWayOfAPI.Entities.SurveyPeriod
             _domainRepository = surveyPeriodDomainRepository;
         }
 
-        public bool IsSurveyPeriodUnique(SurveyPeriodEntity surveyPeriod)
+        public bool IsSurveyPeriodUnique()
         {
-            return _domainRepository.CheckSurveyPeriodNameIsUnique(surveyPeriod.SurveryPeriodName);
+            return _domainRepository.CheckSurveyPeriodNameIsUnique(this.SurveryPeriodName);
         }
 
-        public bool IsValidSurveyPeriod(SurveyPeriodEntity surveyPeriod)
-        {
-            if (surveyPeriod.StartDate > surveyPeriod.EndDate)
-            {
-                throw new Exception("Invalid Date Range of the Survey Period");
-            }
-            return surveyPeriod.StartDate < surveyPeriod.EndDate;
+        public bool IsValidSurveyPeriod()
+        {            
+            return this.StartDate < this.EndDate;
         }
 
 

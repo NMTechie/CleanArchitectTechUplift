@@ -16,9 +16,9 @@
  */
 namespace DomainLayer.NewWayOfAPI.Entities.SurveyPeriod.Ports.Input
 {
-    public interface ISurveyPeriodDomainOperation
+    internal interface ISurveyPeriodDomainOperation
     {
-        bool IsValidSurveyPeriod(SurveyPeriodEntity surveyPeriod);        
-        bool IsSurveyPeriodUnique(SurveyPeriodEntity surveyPeriod);
+        bool IsValidSurveyPeriod();        
+        bool IsSurveyPeriodUnique();
     }
 }

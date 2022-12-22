@@ -13,7 +13,6 @@ namespace ApplicationLayer.NewWayOfAPI.UnitTest
     public class UnitTestForSurveyPeriodService
     {
         private SurveyPeriodEntity surveyPeriodEntity;
-        private Mock<ISurveyPeriodDomainOperation> surveyPeriodDomainPortIP;
         private Mock<ISurveyPeriodRepository> surveyPeriodRepository;
         private SurveyPeriodService surveyPeriodService;
         private Mock<ISurveyPeriodDomainRepository> surveyPeriodDomainRepository;
@@ -21,9 +20,8 @@ namespace ApplicationLayer.NewWayOfAPI.UnitTest
         {
             surveyPeriodDomainRepository = new Mock<ISurveyPeriodDomainRepository>();
             surveyPeriodEntity = new SurveyPeriodEntity(surveyPeriodDomainRepository.Object);
-            surveyPeriodDomainPortIP = new Mock<ISurveyPeriodDomainOperation>();
             surveyPeriodRepository = new Mock<ISurveyPeriodRepository>();
-            surveyPeriodService = new SurveyPeriodService(surveyPeriodDomainPortIP.Object, surveyPeriodRepository.Object);
+            surveyPeriodService = new SurveyPeriodService(surveyPeriodRepository.Object);
         }
         [Fact]
         public void Save_Survey_Period_Test_For_Exceptions()
@@ -41,10 +39,11 @@ namespace ApplicationLayer.NewWayOfAPI.UnitTest
         [Fact]
         public void SaveSurveyPeriod_WhenSurveyPeriodIsNotUniqueAndSurveyPeriodIsNotValid_ShuouldRaiseException()
         {
-            //ARRANGE
-            surveyPeriodDomainPortIP.Setup<bool>(x => x.IsSurveyPeriodUnique(It.IsAny<SurveyPeriodEntity>())).Returns(false);
-            surveyPeriodDomainPortIP.Setup<bool>(x => x.IsValidSurveyPeriod(It.IsAny<SurveyPeriodEntity>())).Returns(false);
-            
+            //ARRANGE            
+            surveyPeriodEntity.StartDate = DateTime.Now;
+            surveyPeriodEntity.EndDate = DateTime.Now.AddDays(-1);
+            surveyPeriodDomainRepository.Setup(x=>x.CheckSurveyPeriodNameIsUnique(surveyPeriodEntity.SurveryPeriodName)).Returns(false);  
+
             //ACT
             var ex = Assert.Throws<SurveyPeriodException>(() => surveyPeriodService.SaveSurveyPeriod(surveyPeriodEntity));
 
@@ -56,11 +55,11 @@ namespace ApplicationLayer.NewWayOfAPI.UnitTest
         public void SaveSurveyPeriod_WhenSurveyPeriodIsNotUniqueAndSurveyPeriodIsValid_ShuouldRaiseException()
         {
             //ARRANGE
-            
-            surveyPeriodDomainPortIP.Setup<bool>(x => x.IsSurveyPeriodUnique(It.IsAny<SurveyPeriodEntity>())).Returns(false);
-            surveyPeriodDomainPortIP.Setup<bool>(x => x.IsValidSurveyPeriod(It.IsAny<SurveyPeriodEntity>())).Returns(true);
-            
-            var surveyPeriodService = new SurveyPeriodService(surveyPeriodDomainPortIP.Object, surveyPeriodRepository.Object);
+            surveyPeriodEntity.StartDate = DateTime.Now;
+            surveyPeriodEntity.EndDate = DateTime.Now.AddDays(1);
+            surveyPeriodDomainRepository.Setup(x => x.CheckSurveyPeriodNameIsUnique(surveyPeriodEntity.SurveryPeriodName)).Returns(false);
+
+            var surveyPeriodService = new SurveyPeriodService(surveyPeriodRepository.Object);
             //ACT
             var ex = Assert.Throws<SurveyPeriodException>(() => surveyPeriodService.SaveSurveyPeriod(surveyPeriodEntity));
             //ASSERT
@@ -71,10 +70,11 @@ namespace ApplicationLayer.NewWayOfAPI.UnitTest
         public void SaveSurveyPeriod_WhenSurveyPeriodIsUniqueAndSurveyPeriodIsNotValid_ShuouldRaiseException()
         {
             //ARRANGE
-            surveyPeriodDomainPortIP.Setup<bool>(x => x.IsSurveyPeriodUnique(It.IsAny<SurveyPeriodEntity>())).Returns(true);
-            surveyPeriodDomainPortIP.Setup<bool>(x => x.IsValidSurveyPeriod(It.IsAny<SurveyPeriodEntity>())).Returns(false);
-            
-            var surveyPeriodService = new SurveyPeriodService(surveyPeriodDomainPortIP.Object, surveyPeriodRepository.Object);
+            surveyPeriodEntity.StartDate = DateTime.Now;
+            surveyPeriodEntity.EndDate = DateTime.Now.AddDays(-1);
+            surveyPeriodDomainRepository.Setup(x => x.CheckSurveyPeriodNameIsUnique(surveyPeriodEntity.SurveryPeriodName)).Returns(true);
+
+            var surveyPeriodService = new SurveyPeriodService(surveyPeriodRepository.Object);
             //ACT
             var ex = Assert.Throws<SurveyPeriodException>(() => surveyPeriodService.SaveSurveyPeriod(surveyPeriodEntity));
             //ASSERT
@@ -85,11 +85,12 @@ namespace ApplicationLayer.NewWayOfAPI.UnitTest
         public void SaveSurveyPeriod_WhenSurveyPeriodIsUniqueAndSurveyPeriodIsValid_ShuouldNotRaiseException()
         {
             //ARRANGE
-            surveyPeriodDomainPortIP.Setup<bool>(x => x.IsSurveyPeriodUnique(It.IsAny<SurveyPeriodEntity>())).Returns(true);
-            surveyPeriodDomainPortIP.Setup<bool>(x => x.IsValidSurveyPeriod(It.IsAny<SurveyPeriodEntity>())).Returns(true);
-            
+            surveyPeriodEntity.StartDate = DateTime.Now;
+            surveyPeriodEntity.EndDate = DateTime.Now.AddDays(1);
+            surveyPeriodDomainRepository.Setup(x => x.CheckSurveyPeriodNameIsUnique(surveyPeriodEntity.SurveryPeriodName)).Returns(true);
+
             surveyPeriodRepository.Setup<bool>(x => x.SaveSurveyPeriod(It.IsAny<SurveyPeriodEntity>())).Returns(true);
-            var surveyPeriodService = new SurveyPeriodService(surveyPeriodDomainPortIP.Object, surveyPeriodRepository.Object);
+            var surveyPeriodService = new SurveyPeriodService(surveyPeriodRepository.Object);
             //ACT
             var result = surveyPeriodService.SaveSurveyPeriod(surveyPeriodEntity);
             //ASSERT

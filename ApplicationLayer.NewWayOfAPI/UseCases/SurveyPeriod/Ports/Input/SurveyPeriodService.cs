@@ -13,11 +13,10 @@ namespace ApplicationLayer.NewWayOfAPI.UseCases.SurveyPeriod.Ports.Input
 {
     public class SurveyPeriodService : ISurveyPeriodService
     {
-        private ISurveyPeriodDomainOperation _surveyPeriodPortIP;
+        //private ISurveyPeriodDomainOperation _surveyPeriodPortIP;
         private ISurveyPeriodRepository _surveyPeriodRepository;
-        public SurveyPeriodService(ISurveyPeriodDomainOperation surveyPeriodPortIP,ISurveyPeriodRepository surveyPeriodRepository)
-        {
-            _surveyPeriodPortIP = surveyPeriodPortIP;
+        public SurveyPeriodService(ISurveyPeriodRepository surveyPeriodRepository)
+        {            
             _surveyPeriodRepository = surveyPeriodRepository;
         }
 
@@ -28,7 +27,7 @@ namespace ApplicationLayer.NewWayOfAPI.UseCases.SurveyPeriod.Ports.Input
 
         public bool SaveSurveyPeriod(SurveyPeriodEntity surveyPeriod)
         {
-            if (!_surveyPeriodPortIP.IsSurveyPeriodUnique(surveyPeriod) || !_surveyPeriodPortIP.IsValidSurveyPeriod(surveyPeriod))
+            if (!surveyPeriod.IsSurveyPeriodUnique() || !surveyPeriod.IsValidSurveyPeriod())
             {
                 throw new SurveyPeriodException("Invalid Survey Period");
             }
